@@ -14,7 +14,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('landing.index');
+});
+
+Route::get('/buku', function () {
+    return view('landing.buku');
+});
+
+Route::get('/buku/detail', function () {
+    return view('landing.detail');
+});
+
+Route::get('/peminjaman', function () {
+    return view('landing.pinjam');
 });
 
 Route::get('/login', function () {

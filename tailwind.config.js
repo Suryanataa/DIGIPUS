@@ -6,7 +6,26 @@ export default {
         "./resources/**/*.vue",
     ],
     theme: {
-        extend: {},
+        extend: {
+            backgroundColor: {
+                primary: "#395886",
+                secondary: "#40608D",
+                aksen: "#CCB484",
+                dasar: "#F0F3FA",
+            },
+            colors: {
+                primary: "#395886",
+                secondary: "#40608D",
+                aksen: "#CCB484",
+                dasar: "#F0F3FA",
+            },
+            borderColor: {
+                primary: "#395886",
+                secondary: "#40608D",
+                aksen: "#CCB484",
+                dasar: "#F0F3FA",
+            },
+        },
     },
-    plugins: [],
+    plugins: [require("@tailwindcss/forms")],
 };
