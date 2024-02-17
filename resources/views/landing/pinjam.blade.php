@@ -12,9 +12,12 @@
                 masing
                 judul!!</p>
 
-            <form class="mt-6">
-                <button type="submit" class="py-3 text-white px-7 bg-primary rounded-xl hover:bg-secondary">buat
+            <form class="flex gap-4 mt-6">
+                <button type="submit" class="py-3 text-white rounded-md px-7 bg-primary hover:bg-secondary">buat
                     invoice</button>
+                <a href="#"
+                    class="py-3 border-2 rounded-md px-7 w-fit border-primary hover:bg-primary hover:text-white">lihat data
+                    pinjam</a>
             </form>
         </div>
     </div>
