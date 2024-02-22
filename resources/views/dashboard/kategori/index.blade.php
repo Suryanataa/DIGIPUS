@@ -28,7 +28,7 @@
         <div class="card">
             <div class="align-items-center card-header d-flex w-100 ">
                 <h3 class="card-title">Data Kategori Buku</h3>
-                <button class="ml-auto btn btn-success">Tambah data</button>
+                <a href="{{route('kategori.create')}}" class="ml-auto btn btn-success">Tambah data</a>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -40,7 +40,17 @@
                         </tr>
                     </thead>
                     <tbody>
-
+                        @foreach ($kategori as $item)
+                            <tr>
+                                <td>{{ $item->kategori }}</td>
+                                <td>
+                                    <div class="justify-content-center d-flex" style="gap: .5rem;">
+                                        <a href="{{route('kategori.edit', $item->id)}}" class="btn btn-warning">Edit</a>
+                                        <a href="{{ route('kategori.destroy', $item->id) }}" class="btn btn-danger" data-confirm-delete="true">Hapus</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

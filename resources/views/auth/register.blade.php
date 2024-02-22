@@ -10,7 +10,8 @@
             <div class="card-body register-card-body">
                 <p class="login-box-msg">Daftar akun perpustakaan baru</p>
 
-                <form>
+                <form action="{{route('auth.register')}}" method="post">
+                    @csrf
                     <div class="d-flex" style="gap: 1rem">
                         <div class="mb-3 input-group">
                             <input type="text" class="form-control" name="nama" placeholder="Full name" autofocus>
@@ -31,7 +32,7 @@
                     </div>
                     <div class="d-flex" style="gap: 1rem">
                         <div class="mb-3 input-group">
-                            <input type="date" class="form-control" name="tanggal_lahir" placeholder="tanggal lahir">
+                            <input type="date" class="form-control" name="tgl_lahir" placeholder="tanggal lahir">
                         </div>
                         <div class="mb-3 input-group">
                             <input type="number" class="form-control" name="telp" placeholder="no.telepon">

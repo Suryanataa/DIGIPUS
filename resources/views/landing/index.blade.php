@@ -16,7 +16,7 @@
     <div class="mx-[100px] text-primary">
         <h2 class="text-[28px] font-bold text-center mb-10">BUKU KAMI</h2>
 
-        <div class="grid grid-cols-5 gap-16 ">
+        <div class="grid grid-cols-5 gap-16 2xl:gap-28">
             <a href="/buku/detail" class="flex flex-col bg-white rounded-xl h-fit">
                 <img src="/images/buku1.png" alt="sampul buku" class="h-[280px] rounded-t-xl">
                 <div class="flex flex-col gap-2 mx-3 mt-2 mb-6 font-semibold text-primary">

@@ -14,7 +14,7 @@
                 <img src="/AdminLTE/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">uhuy</a>
+                <a href="#" class="d-block">{{ auth()->user()->nama }}</a>
             </div>
         </div>
 
@@ -24,7 +24,7 @@
                 data-accordion="false">
 
                 <li class="nav-item">
-                    <a href="/dashboard" class="nav-link active">
+                    <a href="/dashboard" class="nav-link {{ $title == 'Dashboard' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
@@ -42,7 +42,8 @@
                     </a>
                 </li>
 
-                <li class="nav-item menu-open">
+                <li
+                    class="nav-item {{ $title == 'Kategori | Dashboard' || $title == 'Buku | Dashboard' ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-book"></i>
                         <p>
@@ -52,13 +53,15 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item ">
-                            <a href="/dashboard/buku" class="nav-link">
+                            <a href="/dashboard/buku"
+                                class="nav-link {{ $title == 'Buku | Dashboard' ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Buku</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/dashboard/kategori" class="nav-link">
+                            <a href="/dashboard/kategori"
+                                class="nav-link {{ $title == 'Kategori | Dashboard' ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Kategori Buku</p>
                             </a>
@@ -71,16 +74,17 @@
                         </li>
                     </ul>
                 </li>
-
                 <li class="nav-header">KELOLA AKUN</li>
-                <li class="nav-item">
-                    <a href="/dashboard/user" class="nav-link ">
-                        <i class="nav-icon fas fa-people-arrows"></i>
-                        <p>
-                            Manajemen Akun
-                        </p>
-                    </a>
-                </li>
+                @if (auth()->user()->role == 'admin')
+                    <li class="nav-item">
+                        <a href="/dashboard/user" class="nav-link {{ $title == 'User | Dashboard' ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-people-arrows"></i>
+                            <p>
+                                Manajemen Akun
+                            </p>
+                        </a>
+                    </li>
+                @endif
                 <li class="nav-item">
                     <a href="pages/widgets.html" class="nav-link ">
                         <i class="nav-icon fas fa-user-edit"></i>

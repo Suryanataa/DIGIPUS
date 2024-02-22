@@ -4,7 +4,7 @@
         <!-- small box -->
         <div class="small-box bg-info">
             <div class="inner">
-                <h3>10</h3>
+                <h3>{{$sumBuku}}</h3>
                 <p>Total Buku</p>
             </div>
             <div class="icon">
@@ -18,7 +18,7 @@
         <!-- small box -->
         <div class="small-box bg-success">
             <div class="inner">
-                <h3>20</h3>
+                <h3>{{$sumPinjam}}</h3>
 
                 <p>Total Buku Dipinjam</p>
             </div>
@@ -33,7 +33,7 @@
         <!-- small box -->
         <div class="small-box bg-warning">
             <div class="inner">
-                <h3>30</h3>
+                <h3>{{$sumAkun}}</h3>
 
                 <p>Total Akun</p>
             </div>
@@ -48,7 +48,7 @@
         <!-- small box -->
         <div class="small-box" style="background-color: purple">
             <div class="inner">
-                <h3>40</h3>
+                <h3>{{$sumUlasan}}</h3>
 
                 <p>Total Ulasan</p>
             </div>

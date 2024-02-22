@@ -10,7 +10,8 @@
             <div class="card-body register-card-body">
                 <p class="login-box-msg">Masuk ke akun perpustakaan anda</p>
 
-                <form>
+                <form action="{{route('auth.login')}}" method="POST">
+                    @csrf
                     <div class="mb-3 input-group">
                         <input type="email" class="form-control" name="email" placeholder="Email" autofocus>
                         <div class="input-group-append">

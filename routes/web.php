@@ -1,5 +1,12 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Auth\Register;
+use App\Http\Controllers\Dashboard\BukuController;
+use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Dashboard\Kategori;
+use App\Http\Controllers\Dashboard\KategoriController;
+use App\Http\Controllers\Dashboard\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,28 +36,22 @@ Route::get('/peminjaman', function () {
     return view('landing.pinjam');
 });
 
-Route::get('/login', function () {
-    return view('auth.login');
-})->name('auth.index');
+Route::get('/login', [AuthController::class, "index"])->name('auth.index')->middleware('guest');
 
-Route::get('/register', function () {
-    return view('auth.register');
-});
+Route::post('/login', [AuthController::class, "login"])->name('auth.login');
+Route::post('/logout', [AuthController::class, "logout"])->name('auth.logout');
+
+Route::get('/register', [Register::class, "index"])->name('auth.index')->middleware('guest');
+Route::post('/register', [Register::class, "register"])->name('auth.register');
 
 
-
-Route::prefix('dashboard')->group(function () {
-    Route::get('/', function () {
-        return view('dashboard.dashboard');
+Route::middleware(['auth', 'checkrole:admin,petugas'])->group(function () {
+    Route::prefix('dashboard')->group(function () {
+        Route::get('/',[DashboardController::class, "index"])->name('dashboard.index');
+        
+        Route::resource('/buku',  BukuController::class);
+        Route::resource('/kategori', KategoriController::class);
+        Route::resource('/user',  UserController::class);
     });
-
-    Route::get('/buku',  function () {
-        return view('dashboard.buku.index');
-    });
-    Route::get('/kategori',  function () {
-        return view('dashboard.kategori.index');
-    });
-    Route::get('/user',  function () {
-        return view('dashboard.user.index');
-    });
+    
 });

@@ -15,7 +15,7 @@
              </a>
          </li>
          <li class="nav-item">
-             <form action="/logout" method="post">
+             <form action="{{ route('auth.logout') }}" method="post">
                  @csrf
                  <button type="submit"
                      class="text-lg d-flex align-items-center nav-link btn btn-link">@include('partial.icons.logout')

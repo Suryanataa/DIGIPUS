@@ -15,7 +15,7 @@
         <div class="w-3/4 mb-10 ms-auto">
             <h2 class="font-bold text-center text-primary text-[28px]">SEMUA BUKU</h2>
         </div>
-        <div class="flex justify-between gap-8">
+        <div class="flex justify-between gap-10">
             <div class="flex flex-col w-1/4 gap-5">
                 <form class="flex items-center">
                     <input type="search" name="search" placeholder="Cari buku"
@@ -36,7 +36,7 @@
                 </div>
             </div>
             <div class="w-3/4">
-                <div class="grid grid-cols-4 gap-5">
+                <div class="grid grid-cols-4 gap-5 2xl:gap-16">
                     <a href="/buku/detail" class="flex flex-col bg-white rounded-xl h-fit">
                         <img src="/images/buku2.jpg" alt="sampul buku" class="h-[280px] rounded-t-xl">
                         <div class="flex flex-col gap-2 mx-3 mt-2 mb-6 font-semibold text-primary">

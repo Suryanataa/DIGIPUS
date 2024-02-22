@@ -28,23 +28,39 @@
         <div class="card">
             <div class="align-items-center card-header d-flex w-100 ">
                 <h3 class="card-title">Data Buku</h3>
-                <button class="ml-auto btn btn-success">Tambah data</button>
+                <a href="{{ route('buku.create') }}" class="ml-auto btn btn-success">Tambah data</a>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
                 <table id="table" class="table text-center table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th>Foto Buku</th>
                             <th>Judul Buku</th>
                             <th>Penulis</th>
                             <th>Tahun Terbit</th>
                             <th>Stok</th>
+                            <th>Buku Dipinjam</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-
+                        @foreach ($buku as $item)
+                            <tr>
+                                <td>{{ $item->judul }}</td>
+                                <td>{{ $item->penulis }}</td>
+                                <td>{{ $item->thn_terbit }}</td>
+                                <td>{{ $item->stok }}</td>
+                                <td>{{ $item->jml_pinjam }}</td>
+                                <td>
+                                    <div class="justify-content-center d-flex" style="gap: .5rem;">
+                                        <a href="{{ route('buku.show', $item->id) }}" class="btn btn-info">Detail</a>
+                                        <a href="{{ route('buku.edit', $item->id) }}" class="btn btn-warning">Edit</a>
+                                        <a href="{{ route('buku.destroy', $item->id) }}" class="btn btn-danger"
+                                            data-confirm-delete="true">Hapus</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
