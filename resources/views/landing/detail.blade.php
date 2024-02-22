@@ -6,28 +6,27 @@
     <div class="flex px-[100px] gap-12 mt-10">
         <div class="flex flex-col items-end w-2/5">
             <span>
-                <img src="/images/buku3.jpg" alt="sampul buku" class="object-contain">
-                <form class="mt-6">
-                    <button type="submit" class="w-full py-3 text-white px-7 bg-primary rounded-xl hover:bg-secondary">simpan
-                        koleksi</button>
-                </form>
+                <img src="/gambar/{{ $buku->gambar }}" alt="sampul buku" class="object-contain">
+                @auth
+
+                    <form class="mt-6" method="post" action="{{ route('koleksi.store') }}">
+                        @csrf
+                        <input type="text" name="id_buku" id="id_buku" value="{{ $buku->id }}" hidden>
+                        <button type="submit"
+                            class="w-full py-3 text-white px-7 bg-primary rounded-xl hover:bg-secondary">simpan
+                            koleksi</button>
+                    </form>
+                @endauth
             </span>
         </div>
         <div class="flex flex-col w-3/5 text-[20px] text-primary font-semibold gap-4">
-            <p>JUDUL: ONE PIECE</p>
-            <p>PENULIS: EICHIRO ODA</p>
-            <p>PENERBIT: SHONEN JUMP</p>
-            <p>TAHUN TERBIT: 1998</p>
+            <p>JUDUL: {{ $buku->judul }}</p>
+            <p>PENULIS: {{ $buku->penulis }}</p>
+            <p>PENERBIT: {{ $buku->penerbit }}</p>
+            <p>TAHUN TERBIT: {{ $buku->thn_terbit }}</p>
             <p class="flex gap-4">RATING: <span class="flex gap-2">@include('landing.partial.star') 4.5 </span></p>
             <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis expedita id pariatur nulla tenetur ducimus
-                consequuntur fugiat velit est non. Sint dignissimos qui praesentium tempore minus id aliquid, temporibus
-                dolores, voluptatem animi magni ad consequatur doloremque quos, rerum ea tenetur! Ipsam quos similique
-                doloremque dolorum quidem amet, et, in deserunt, ex pariatur numquam corporis necessitatibus eligendi
-                ratione laboriosam soluta vitae quasi nobis? Error eligendi aperiam sed sit ipsam necessitatibus inventore
-                est laboriosam laudantium rerum assumenda ut labore asperiores ullam quis animi, eum quam perspiciatis quia.
-                Cumque praesentium quae culpa nemo dolores, ullam eos earum enim! Blanditiis, neque. Laboriosam, corporis
-                ratione?
+                {{ $buku->deskripsi }}
             </p>
 
             <form class="flex flex-col px-10 mt-10 bg-white py-7 text-primary rounded-xl">
@@ -59,33 +58,17 @@
         <h2 class="font-bold text-center text-primary text-[28px] mb-10">ULASAN BUKU</h2>
 
         <div class="grid grid-cols-3 gap-6">
-            <div class="flex flex-col font-semibold bg-white text-primary text-[20px] py-5 px-10 gap-2 rounded-xl">
-                <span>Nama: Surya Nata Ardhana</span>
-                <span class="flex gap-2">Rating: <span class="flex gap-1">@include('landing.partial.star') 5</span></span>
-                <div class="flex flex-col gap-2">
-                    <span>Ulasan:</span>
-                    <textarea name="ulasan" readonly cols="30" disabled
-                        class="w-full mx-auto rounded-lg border-primary text-primary bg-dasar"></textarea>
+            @foreach ($ulasan as $item)
+                <div class="flex flex-col font-semibold bg-white text-primary text-[20px] py-5 px-10 gap-2 rounded-xl">
+                    <span>Nama: Surya Nata Ardhana</span>
+                    <span class="flex gap-2">Rating: <span class="flex gap-1">@include('landing.partial.star') 5</span></span>
+                    <div class="flex flex-col gap-2">
+                        <span>Ulasan:</span>
+                        <textarea name="ulasan" readonly cols="30" disabled
+                            class="w-full mx-auto rounded-lg border-primary text-primary bg-dasar"></textarea>
+                    </div>
                 </div>
-            </div>
-            <div class="flex flex-col font-semibold bg-white text-primary text-[20px] py-5 px-10 gap-2 rounded-xl">
-                <span>Nama: Surya Nata Ardhana</span>
-                <span class="flex gap-2">Rating: <span class="flex gap-1">@include('landing.partial.star') 5</span></span>
-                <div class="flex flex-col gap-2">
-                    <span>Ulasan:</span>
-                    <textarea name="ulasan" readonly cols="30" disabled
-                        class="w-full mx-auto rounded-lg border-primary text-primary bg-dasar">rekomen</textarea>
-                </div>
-            </div>
-            <div class="flex flex-col font-semibold bg-white text-primary text-[20px] py-5 px-10 gap-2 rounded-xl">
-                <span>Nama: Surya Nata Ardhana</span>
-                <span class="flex gap-2">Rating: <span class="flex gap-1">@include('landing.partial.star') 5</span></span>
-                <div class="flex flex-col gap-2">
-                    <span>Ulasan:</span>
-                    <textarea name="ulasan" readonly cols="30" disabled
-                        class="w-full mx-auto rounded-lg border-primary text-primary bg-dasar">bagus</textarea>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 @endsection

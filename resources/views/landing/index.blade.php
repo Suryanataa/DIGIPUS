@@ -17,51 +17,17 @@
         <h2 class="text-[28px] font-bold text-center mb-10">BUKU KAMI</h2>
 
         <div class="grid grid-cols-5 gap-16 2xl:gap-28">
-            <a href="/buku/detail" class="flex flex-col bg-white rounded-xl h-fit">
-                <img src="/images/buku1.png" alt="sampul buku" class="h-[280px] rounded-t-xl">
+            @foreach ($buku as $item)    
+            <a href="{{route('buku.detail', $item->slug)}}" class="flex flex-col bg-white rounded-xl h-fit">
+                <img src="/gambar/{{ $item->gambar }}" alt="sampul buku" class="h-[280px] rounded-t-xl">
                 <div class="flex flex-col gap-2 mx-3 mt-2 mb-6 font-semibold text-primary">
                     <h3 class="line-clamp-1 text-[20px]">
-                        Lukisan Senja
+                        {{ $item->judul }}
                     </h3>
                     <p class="flex items-center gap-2">@include('landing.partial.star') 4.5</p>
                 </div>
             </a>
-            <a href="/buku/detail" class="flex flex-col bg-white rounded-xl h-fit">
-                <img src="/images/buku2.jpg" alt="sampul buku" class="h-[280px] rounded-t-xl">
-                <div class="flex flex-col gap-2 mx-3 mt-2 mb-6 font-semibold text-primary">
-                    <h3 class="line-clamp-1 text-[20px]">
-                        Buku Pelajaran
-                    </h3>
-                    <p class="flex items-center gap-2">@include('landing.partial.star') 4.5</p>
-                </div>
-            </a>
-            <a href="/buku/detail" class="flex flex-col bg-white rounded-xl h-fit">
-                <img src="/images/buku3.jpg" alt="sampul buku" class="h-[280px] rounded-t-xl">
-                <div class="flex flex-col gap-2 mx-3 mt-2 mb-6 font-semibold text-primary">
-                    <h3 class="line-clamp-1 text-[20px]">
-                        One Piece
-                    </h3>
-                    <p class="flex items-center gap-2">@include('landing.partial.star') 4.5</p>
-                </div>
-            </a>
-            <a href="/buku/detail"class="flex flex-col bg-white rounded-xl h-fit">
-                <img src="/images/buku4.jpg" alt="sampul buku" class="h-[280px] rounded-t-xl">
-                <div class="flex flex-col gap-2 mx-3 mt-2 mb-6 font-semibold text-primary">
-                    <h3 class="line-clamp-1 text-[20px]">
-                        The King SNBP
-                    </h3>
-                    <p class="flex items-center gap-2">@include('landing.partial.star') 4.5</p>
-                </div>
-            </a>
-            <a href="/buku/detail" class="flex flex-col bg-white rounded-xl h-fit">
-                <img src="/images/buku5.jpg" alt="sampul buku" class="h-[280px] rounded-t-xl">
-                <div class="flex flex-col gap-2 mx-3 mt-2 mb-6 font-semibold text-primary">
-                    <h3 class="line-clamp-1 text-[20px]">
-                        ATOMIC HABBIT
-                    </h3>
-                    <p class="flex items-center gap-2">@include('landing.partial.star') 4.5</p>
-                </div>
-            </a>
+            @endforeach
         </div>
 
         <div class="flex justify-center w-full mt-10">

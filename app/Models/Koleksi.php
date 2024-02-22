@@ -9,5 +9,5 @@ class Koleksi extends Model
 {
     use HasFactory;
     protected $table = "koleksi";
-
+    protected $guarded = ["id"];
 }

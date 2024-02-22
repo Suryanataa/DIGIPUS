@@ -9,5 +9,10 @@ class Peminjaman extends Model
 {
     use HasFactory;
     protected $table = "peminjaman";
+    protected $guarded = ['id'];
 
+    public function detail_pinjam()
+    {
+        return $this->hasMany(DetailPinjam::class, 'id_pinjam', 'id');
+    }
 }

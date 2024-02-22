@@ -9,5 +9,14 @@
         <li class="hover:text-aksen"><a href="/peminjaman">PEMINJAMAN</a></li>
     </ul>
 
-    <a href="/login" class="py-3 text-white px-7 bg-primary rounded-xl hover:bg-secondary">Masuk</a>
+    @auth
+    <form action="{{route('auth.logout')}}" method="post">
+        @csrf
+        <button type="submit" class="py-3 text-white bg-red-500 px-7 rounded-xl hover:bg-red-800">keluar</button>
+    </form>
+    @endauth
+
+    @guest
+        <a href="/login" class="py-3 text-white px-7 bg-primary rounded-xl hover:bg-secondary">Masuk</a>
+    @endguest
 </nav>

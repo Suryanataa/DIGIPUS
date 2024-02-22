@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('detail_pinjam', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("id_user")->constrained("users");
+            $table->foreignId("id_pinjam")->constrained("peminjaman");
             $table->foreignId("id_buku")->constrained("buku");
             $table->timestamps();
         });

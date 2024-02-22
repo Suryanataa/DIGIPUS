@@ -1,30 +1,20 @@
 <?php
 
-namespace App\Http\Controllers\Dashboard;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\Buku;
+use App\Models\DetailPinjam;
 use App\Models\Peminjaman;
-use App\Models\Ulasan;
-use App\Models\User;
 use Illuminate\Http\Request;
 
-class DashboardController extends Controller
+class ListPinjamController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(string $id)
     {
-        $title = "Dashboard";
-        $sumBuku = Buku::all()->count();
-        $sumPinjam = Peminjaman::all()->count();
-        $sumAkun = User::all()->count();
-        $sumUlasan = Ulasan::all()->count();
-
-        $buku = Buku::limit(5)->get();
-
-        return view("dashboard.dashboard", compact("sumBuku", "sumPinjam", "sumAkun", "sumUlasan", "title", "buku"));
+        
     }
 
     /**
@@ -48,7 +38,10 @@ class DashboardController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $buku = Buku::where('stok', '!=', 0)->get();
+        $invoice = Peminjaman::where('invoice', $id)->get();
+        // $peminjaman = DetailPinjam::with('buku')->where('id_pinjam', $invoice->id)->get();
+        return view('landing.list_pinjam', compact('peminjaman', 'buku'));
     }
 
     /**

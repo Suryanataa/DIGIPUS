@@ -7,6 +7,11 @@ use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\Kategori;
 use App\Http\Controllers\Dashboard\KategoriController;
 use App\Http\Controllers\Dashboard\UserController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\KoleksiController;
+use App\Http\Controllers\LandingBuku;
+use App\Http\Controllers\ListPinjamController;
+use App\Http\Controllers\PeminjamanController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,21 +25,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('landing.index');
-});
+Route::get('/', [HomeController::class, "index"])->name('home.index');
 
-Route::get('/buku', function () {
-    return view('landing.buku');
-});
+Route::get('/buku', [LandingBuku::class, "index"])->name('buku.index');
 
-Route::get('/buku/detail', function () {
-    return view('landing.detail');
-});
+Route::get('/buku/{kategori}', [LandingBuku::class, "kategori"])->name('buku.kategori');
 
-Route::get('/peminjaman', function () {
-    return view('landing.pinjam');
-});
+Route::get('/buku/detail/{slug}', [LandingBuku::class, "detail"])->name('buku.detail');
+
+Route::resource('/peminjaman', PeminjamanController::class);
+Route::resource('/list-pinjam', ListPinjamController::class);
+Route::post('/koleksi', [KoleksiController::class, "store"])->name('koleksi.store');
 
 Route::get('/login', [AuthController::class, "index"])->name('auth.index')->middleware('guest');
 

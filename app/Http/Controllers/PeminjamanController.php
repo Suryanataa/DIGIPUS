@@ -1,38 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\Dashboard;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\Buku;
 use App\Models\Peminjaman;
-use App\Models\Ulasan;
-use App\Models\User;
 use Illuminate\Http\Request;
 
-class DashboardController extends Controller
+class PeminjamanController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $title = "Dashboard";
-        $sumBuku = Buku::all()->count();
-        $sumPinjam = Peminjaman::all()->count();
-        $sumAkun = User::all()->count();
-        $sumUlasan = Ulasan::all()->count();
-
-        $buku = Buku::limit(5)->get();
-
-        return view("dashboard.dashboard", compact("sumBuku", "sumPinjam", "sumAkun", "sumUlasan", "title", "buku"));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return view('landing.pinjam');
     }
 
     /**
@@ -40,7 +21,14 @@ class DashboardController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $credetials = $request->validate([]);
+
+        $credetials['id_user'] = auth()->user()->id;
+        $credetials['invoice'] = 'INV-' . rand(1000, 9999) . '-' . auth()->user()->id;
+
+        Peminjaman::create($credetials);
+
+        return redirect('/list-pinjam/' . $credetials['invoice'])->with('success', 'Invoice dibuat');
     }
 
     /**
@@ -48,7 +36,7 @@ class DashboardController extends Controller
      */
     public function show(string $id)
     {
-        //
+        
     }
 
     /**
@@ -56,7 +44,6 @@ class DashboardController extends Controller
      */
     public function edit(string $id)
     {
-        //
     }
 
     /**

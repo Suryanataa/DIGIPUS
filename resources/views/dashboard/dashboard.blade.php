@@ -52,6 +52,13 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($buku as $item)
+                                        <tr>
+                                            <td>{{ $item->judul }}</td>
+                                            <td>{{ $item->penulis }}</td>
+                                            <td>{{ $item->thn_terbit }}</td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

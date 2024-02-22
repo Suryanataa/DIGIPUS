@@ -40,7 +40,7 @@
             <div class="w-3/4">
                 <div class="grid grid-cols-4 gap-5 2xl:gap-16">
                     @foreach ($buku as $item)
-                        <a href="{{route('buku.detail', $item->slug)}}" class="flex flex-col bg-white rounded-xl h-fit">
+                        <a href="/buku/detail" class="flex flex-col bg-white rounded-xl h-fit">
                             <img src="/gambar/{{ $item->gambar }}" alt="sampul buku" class="h-[280px] rounded-t-xl">
                             <div class="flex flex-col gap-2 mx-3 mt-2 mb-6 font-semibold text-primary">
                                 <h3 class="line-clamp-1 text-[20px]">

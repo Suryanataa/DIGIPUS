@@ -12,7 +12,8 @@
                 masing
                 judul!!</p>
 
-            <form class="flex gap-4 mt-6">
+            <form class="flex gap-4 mt-6" method="POST" action="{{ route('peminjaman.store') }}">
+                @csrf
                 <button type="submit" class="py-3 text-white rounded-md px-7 bg-primary hover:bg-secondary">buat
                     invoice</button>
                 <a href="#"

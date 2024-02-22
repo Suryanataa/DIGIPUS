@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('peminjaman', function (Blueprint $table) {
             $table->id();
             $table->foreignId("id_user")->constrained("users");
-            $table->date("tgl_pinjam");
+            $table->date("tgl_pinjam")->nullable()->default(null);
             $table->date("tgl_kembali")->nullable();
             $table->date("tenggat_pinjam")->nullable();
             $table->enum("status", ['pending', 'pinjam', 'kembali'])->default("pending");
