@@ -20,4 +20,9 @@ class Buku extends Model
     {
         return $this->hasMany(DetailPinjam::class, 'id_buku', 'id');
     }
+
+    public function koleksi()
+    {
+        return $this->hasMany(Koleksi::class, 'id_buku', 'id');
+    }
 }

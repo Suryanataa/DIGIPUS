@@ -24,8 +24,9 @@ class DashboardController extends Controller
 
         $buku = Buku::limit(5)->get();
         $peminjaman = Peminjaman::with('user')->where('tgl_pinjam', '!=', null)->limit(5)->get();
+        $ulasan = Ulasan::with('user')->with('buku')->limit(5)->get();
 
-        return view("dashboard.dashboard", compact("sumBuku", "sumPinjam", "sumAkun", "sumUlasan", "title", "buku", 'peminjaman'));
+        return view("dashboard.dashboard", compact("sumBuku", "sumPinjam", "sumAkun", "sumUlasan", "title", "buku", 'peminjaman', 'ulasan'));
     }
 
     /**

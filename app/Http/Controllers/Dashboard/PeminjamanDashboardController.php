@@ -16,7 +16,7 @@ class PeminjamanDashboardController extends Controller
      */
     public function index()
     {
-        $title = "Peminjaman | Dashboard";
+        $title = "Data Peminjaman";
         $peminjaman = Peminjaman::with('user')->get();
         return view('dashboard.peminjaman.index',compact('title', 'peminjaman'));
     }
@@ -26,7 +26,7 @@ class PeminjamanDashboardController extends Controller
      */
     public function konfirmasi(string $id)
     {
-        $title = "Peminjaman | Dashboard";
+        $title = "Data Peminjaman";
         $invoice = Peminjaman::with('user')->where('invoice', $id)->first();
         $list = DetailPinjam::with('buku')->where('id_pinjam', $invoice->id)->get();
         $tenggat = Carbon::create($invoice->tgl_pinjam)->addWeek(2)->format('Y-m-d');
@@ -52,7 +52,7 @@ class PeminjamanDashboardController extends Controller
      */
     public function show(string $id)
     {
-        $title = "Peminjaman | Dashboard";
+        $title = "Data Peminjaman";
         $invoice = Peminjaman::with('user')->where('invoice', $id)->first();
         $list = DetailPinjam::with('buku')->where('id_pinjam', $invoice->id)->get();
         return view('dashboard.peminjaman.show', compact('title', 'invoice','list'));
@@ -63,7 +63,7 @@ class PeminjamanDashboardController extends Controller
      */
     public function kembali(string $id)
     {
-        $title = "Peminjaman | Dashboard";
+        $title = "Data Peminjaman";
         $invoice = Peminjaman::with('user')->where('invoice', $id)->first();
         $list = DetailPinjam::with('buku')->where('id_pinjam', $invoice->id)->get();
         $tenggat = Carbon::create($invoice->tgl_pinjam)->addWeek(2)->format('Y-m-d');
@@ -79,12 +79,14 @@ class PeminjamanDashboardController extends Controller
             "tgl_kembali" => "required",
             "status" => "required",
         ]);
-
-        // $detail = DetailPinjam::where('id', $id);
-        // $buku = Buku::find($detail->first()->id_buku);
-        // $buku->stok = $buku->stok + 1;
-        // $buku->jml_pinjam = $buku->jml_pinjam - 1;
-        // $buku->save();
+        $invoice = Peminjaman::where('invoice', $id)->first();
+        $list = DetailPinjam::with('buku')->where('id_pinjam', $invoice->id)->get();
+        foreach ($list as $item) {
+            $buku = Buku::find($item->id_buku);
+            $buku->stok = $buku->stok + 1;
+            $buku->jml_pinjam = $buku->jml_pinjam - 1;
+            $buku->save();
+        }
         Peminjaman::where('invoice', $id)->update($credential);
         return redirect('/dashboard/peminjaman')->with('success', 'Pengembalian selesai');
     }

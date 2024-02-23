@@ -108,12 +108,19 @@
                             <table id="table" class="table text-center table-bordered table-striped">
                                 <thead>
                                     <tr>
+                                        <th>Ulasan Dari</th>
                                         <th>Nama Buku</th>
                                         <th>Ulasan</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-
+                                    @foreach ($ulasan as $item)
+                                    <tr>
+                                        <td>{{ $item->user->nama }}</td>
+                                        <td>{{ $item->buku->judul }}</td>
+                                        <td>{{ $item->ulasan}}</td>
+                                    </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div><!-- /.card-body -->

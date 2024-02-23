@@ -11,6 +11,7 @@
                 <li class="hover:text-aksen"><a href="/dashboard">DASHBOARD</a></li>
             @else
                 <li class="hover:text-aksen"><a href="/peminjaman">PEMINJAMAN</a></li>
+                <li class="hover:text-aksen"><a href="/koleksi">KOLEKSI</a></li>
                 <li class="hover:text-aksen"><a href="/profil">PROFIL</a></li>
             @endif
         @endauth

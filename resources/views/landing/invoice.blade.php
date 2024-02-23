@@ -8,8 +8,15 @@
             @foreach ($invoice as $item)
                 <div class="flex flex-col font-semibold bg-white text-primary text-[20px] py-5 px-[50px] gap-2 rounded-xl">
                     <p>Invoice: {{ $item->invoice }}</p>
-                    <p>Tanggal Pinjang: {{ $item->tgl_pinjam }}</p>
+                    <p>Tanggal Pinjam: {{ $item->tgl_pinjam }}</p>
                     <p>Status Pinjam: {{ $item->status }}</p>
+                    @if ($item->status == 'pinjam' || $item->status == 'kembali')
+                        <a href="{{ route('invoice.show', $item->invoice) }}"
+                            class="w-full px-16 py-3 mx-auto mt-5 text-center text-white bg-primary rounded-xl hover:bg-secondary">detail</a>
+                    @else
+                    <a href="{{ route('list-pinjam.show', $item->invoice) }}"
+                        class="w-full px-16 py-3 mx-auto mt-5 text-center text-white bg-primary rounded-xl hover:bg-secondary">detail</a>
+                    @endif
                 </div>
             @endforeach
         </div>

@@ -48,19 +48,22 @@
                                 <td>{{ $item->invoice }}</td>
                                 <td>{{ $item->user->nama }}</td>
                                 <td>{{ $item->tgl_pinjam }}</td>
-                                <td>{{ $item->tgl_kembali == null ? 'Belum Kembali' : ($item->tenggat_pinjam < $item->tgl_kembali ? 'Telat' : 'Tepat Waktu') }}</td>
+                                <td>{{ $item->tgl_kembali == null ? 'Belum Kembali' : ($item->tenggat_pinjam < $item->tgl_kembali ? 'Telat' : 'Tepat Waktu') }}
+                                </td>
                                 <td>{{ $item->status }}</td>
                                 <td>
                                     <div class="justify-content-center d-flex" style="gap: .5rem;">
-                                        <a href="{{ route('dashboard.peminjaman.show', $item->invoice) }}" class="btn btn-info">Detail</a>
+                                        <a href="{{ route('dashboard.peminjaman.show', $item->invoice) }}"
+                                            class="btn btn-info">Detail</a>
                                         @if ($item->tgl_pinjam != null && $item->status == 'pending')
-                                            <a href="{{ route('dashboard.peminjaman.konfirmasi', $item->invoice) }}" class="btn btn-success">Konfirmasi
+                                            <a href="{{ route('dashboard.peminjaman.konfirmasi', $item->invoice) }}"
+                                                class="btn btn-success">Konfirmasi
                                                 Pinjam</a>
                                         @endif
 
                                         @if ($item->status == 'pinjam')
-                                            <a href="{{ route('dashboard.peminjaman.kembali', $item->invoice) }}" class="btn btn-danger"
-                                                data-confirm-delete="true">Konfirmasi Kembali</a>
+                                            <a href="{{ route('dashboard.peminjaman.kembali', $item->invoice) }}"
+                                                class="btn btn-danger" data-confirm-delete="true">Konfirmasi Kembali</a>
                                         @endif
                                     </div>
                                 </td>
@@ -75,5 +78,40 @@
 @endsection
 
 @section('script')
-    @include('partial.datables')
+    <!-- DataTables  & Plugins -->
+    <script src="/AdminLTE/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="/AdminLTE/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="/AdminLTE/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="/AdminLTE/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="/AdminLTE/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="/AdminLTE/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="/AdminLTE/plugins/jszip/jszip.min.js"></script>
+    <script src="/AdminLTE/plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="/AdminLTE/plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="/AdminLTE/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="/AdminLTE/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="/AdminLTE/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <script>
+        $(function() {
+            $("#table").DataTable({
+                "responsive": true,
+                "lengthChange": true,
+                "autoWidth": false,
+                "searching": true,
+                buttons: [{
+                        extend: 'excelHtml5',
+                        exportOptions: {
+                            columns: [0,1,2,3,4]
+                        }
+                    },
+                    {
+                        extend: 'pdfHtml5',
+                        exportOptions: {
+                            columns: [0,1,2,3,4]
+                        }
+                    },
+                ]
+            }).buttons().container().appendTo('#table_wrapper .col-md-6:eq(0)');
+        });
+    </script>
 @endsection

@@ -111,46 +111,6 @@
             </div>
             <!-- /.card-body -->
         </div>
-
-        <div class="card">
-            <div class="align-items-center card-header d-flex w-100 ">
-                <h3 class="card-title">ganti password</h3>
-            </div>
-            <div class="card-body">
-                <form action="">
-                    <div class="d-flex" style="gap: 1rem">
-                        <div class="mb-3 input-group">
-                            <input minlength="8" type="password" class="form-control" name="password"
-                                placeholder="Password sebelumnya">
-                            <div class="input-group-append">
-                                <div class="input-group-text">
-                                    <span class="fas fa-lock"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mb-3 input-group">
-                            <input minlength="8" type="password" class="form-control" name="password"
-                                placeholder="Password baru">
-                            <div class="input-group-append">
-                                <div class="input-group-text">
-                                    <span class="fas fa-lock"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mb-3 input-group">
-                            <input minlength="8" type="password" class="form-control" name="password_confirmation"
-                                placeholder="konfirmasi password">
-                            <div class="input-group-append">
-                                <div class="input-group-text">
-                                    <span class="fas fa-lock"></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn-success btn">simpan</button>
-                </form>
-            </div>
-        </div>
     </div>
 @endsection
 

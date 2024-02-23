@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DetailPinjam;
 use App\Models\Peminjaman;
 use Illuminate\Http\Request;
 
@@ -37,7 +38,9 @@ class InvoiceController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $invoice = Peminjaman::with('user')->where('invoice', $id)->first();
+        $list = DetailPinjam::with('buku')->where('id_pinjam', $invoice->id)->get();
+        return view('landing.invoiceDetail', compact('list','invoice'));
     }
 
     /**

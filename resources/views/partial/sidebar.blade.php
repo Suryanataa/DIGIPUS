@@ -34,7 +34,7 @@
 
                 <li class="nav-header">KELOLA BUKU</li>
                 <li class="nav-item">
-                    <a href="/dashboard/peminjaman" class="nav-link {{ $title == 'Peminjaman | Dashboard' ? 'active' : '' }}">
+                    <a href="/dashboard/peminjaman" class="nav-link {{ $title == 'Data Peminjaman' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-table"></i>
                         <p>
                             Peminjaman
@@ -43,7 +43,7 @@
                 </li>
 
                 <li
-                    class="nav-item {{ $title == 'Kategori | Dashboard' || $title == 'Buku | Dashboard' ? 'menu-open' : '' }}">
+                    class="nav-item {{ $title == 'Kategori | Dashboard' || $title == 'Buku | Dashboard' || $title == 'Ulasan | Dashboard' ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-book"></i>
                         <p>
@@ -67,7 +67,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/tables/jsgrid.html" class="nav-link">
+                            <a href="/dashboard/ulasan" class="nav-link {{ $title == 'Ulasan | Dashboard' ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Ulasan Buku</p>
                             </a>
@@ -86,7 +86,7 @@
                     </li>
                 @endif
                 <li class="nav-item">
-                    <a href="pages/widgets.html" class="nav-link ">
+                    <a href="/dashboard/profile/{{ auth()->user()->id }}" class="nav-link {{ $title == 'Profile | Dashboard' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-user-edit"></i>
                         <p>
                             Profile

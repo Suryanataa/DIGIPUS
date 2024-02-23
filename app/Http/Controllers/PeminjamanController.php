@@ -52,6 +52,6 @@ class PeminjamanController extends Controller
         ]);
 
         Peminjaman::where('invoice',$id)->update($credetials);
-        return redirect('/')->with('success', 'Silahkan konfimasi kepada petugas');
+        return redirect('/invoice')->with('success', 'Silahkan konfimasi kepada petugas');
     }
 }

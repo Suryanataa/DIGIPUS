@@ -14,11 +14,11 @@ class ListPinjamController extends Controller
      */
     public function show(string $id)
     {
-        $buku = Buku::where('stok', '!=', 0)->get();
         $invoice = Peminjaman::where('invoice', $id)->first();
         $peminjaman = DetailPinjam::with('buku')
             ->where('id_pinjam', $invoice->id)
             ->get();
+        $buku = Buku::where('stok', '!=', 0)->get();
         return view('landing.list_pinjam', compact('peminjaman', 'buku', 'invoice'));
     }
 

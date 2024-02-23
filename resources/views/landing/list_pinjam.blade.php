@@ -43,11 +43,13 @@
                         </tbody>
                     </table>
                 </div>
-                <a href="{{ route('peminjaman.edit', $invoice->invoice) }}" class="">
-                    <div class="w-full py-3 text-center text-white mt-7 px-7 bg-primary rounded-xl hover:bg-secondary">
-                        konfirmasi
-                    </div>
-                </a>
+                @if ($peminjaman->count() > 0)
+                    <a href="{{ route('peminjaman.edit', $invoice->invoice) }}">
+                        <div class="w-full py-3 text-center text-white mt-7 px-7 bg-primary rounded-xl hover:bg-secondary">
+                            konfirmasi
+                        </div>
+                    </a>
+                @endif
             </div>
             <form action="{{ route('list-pinjam.store') }}" method="POST"
                 class="flex flex-col w-1/2 gap-2 font-bold text-center bg-white rounded-xl text-primary"style="padding: 25px 100px">

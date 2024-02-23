@@ -43,4 +43,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Peminjaman::class, 'id_user', 'id');
     }
+
+    public function ulasan()
+    {
+        return $this->hasMany(Ulasan::class, 'id_user', 'id');
+    }
 }

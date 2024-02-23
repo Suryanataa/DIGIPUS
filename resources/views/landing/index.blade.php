@@ -24,7 +24,6 @@
                     <h3 class="line-clamp-1 text-[20px]">
                         {{ $item->judul }}
                     </h3>
-                    <p class="flex items-center gap-2">@include('landing.partial.star') 4.5</p>
                 </div>
             </a>
             @endforeach

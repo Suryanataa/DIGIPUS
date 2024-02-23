@@ -7,6 +7,7 @@ use App\Models\Kategori;
 use App\Models\Koleksi;
 use App\Models\Ulasan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LandingBuku extends Controller
 {
@@ -20,8 +21,11 @@ class LandingBuku extends Controller
     public function detail(string $slug)
     {
         $buku = Buku::where('slug', $slug)->first();
-        $ulasan = Ulasan::all();
-        return view('landing.detail', compact('buku', 'ulasan'));
+        $avgRating = Ulasan::where('id_buku', $buku->id)->avg('rate');
+        $ulasan = Ulasan::with('user')->where('id_buku', $buku->id)->get();
+        $isKoleksi = Koleksi::where('id_user', Auth::user()->id)->where('id_buku', $buku->id)->exists();
+        $isUlas = Ulasan::where('id_user', Auth::user()->id)->where('id_buku', $buku->id)->exists();
+        return view('landing.detail', compact('buku', 'ulasan', 'isKoleksi', 'isUlas', 'avgRating'));
     }
 
     public function kategori(string $id)
