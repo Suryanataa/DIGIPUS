@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Buku;
+use App\Models\DetailPinjam;
 use App\Models\Peminjaman;
 use Illuminate\Http\Request;
 
@@ -32,18 +33,13 @@ class PeminjamanController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
+        $invoice = Peminjaman::with('user')->where('invoice', $id)->first();
+        $buku = DetailPinjam::where('id_pinjam', $invoice->id)->count();
+        return view('landing.konfirmasi', compact('invoice', 'buku'));
     }
 
     /**
@@ -51,14 +47,11 @@ class PeminjamanController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
-    }
+        $credetials = $request->validate([
+            "tgl_pinjam" => 'required',
+        ]);
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        Peminjaman::where('invoice',$id)->update($credetials);
+        return redirect('/')->with('success', 'Silahkan konfimasi kepada petugas');
     }
 }

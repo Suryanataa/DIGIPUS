@@ -6,14 +6,21 @@
         <li class="hover:text-aksen"><a href="/">BERANDA</a></li>
         <li class="hover:text-aksen"><a href="/#tentang">TENTANG</a></li>
         <li class="hover:text-aksen"><a href="/buku">BUKU</a></li>
-        <li class="hover:text-aksen"><a href="/peminjaman">PEMINJAMAN</a></li>
+        @auth
+            @if (Auth::user()->role == 'admin' || Auth::user()->role == 'petugas')
+                <li class="hover:text-aksen"><a href="/dashboard">DASHBOARD</a></li>
+            @else
+                <li class="hover:text-aksen"><a href="/peminjaman">PEMINJAMAN</a></li>
+                <li class="hover:text-aksen"><a href="/profil">PROFIL</a></li>
+            @endif
+        @endauth
     </ul>
 
     @auth
-    <form action="{{route('auth.logout')}}" method="post">
-        @csrf
-        <button type="submit" class="py-3 text-white bg-red-500 px-7 rounded-xl hover:bg-red-800">keluar</button>
-    </form>
+        <form action="{{ route('auth.logout') }}" method="post">
+            @csrf
+            <button type="submit" class="py-3 text-white bg-red-500 px-7 rounded-xl hover:bg-red-800">keluar</button>
+        </form>
     @endauth
 
     @guest

@@ -18,6 +18,6 @@ class DetailPinjam extends Model
 
     public function buku()
     {
-        return $this->belongsTo(Buku::class, 'id');
+        return $this->belongsTo(Buku::class, 'id_buku', 'id');
     }
 }

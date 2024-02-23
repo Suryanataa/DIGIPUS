@@ -15,4 +15,9 @@ class Peminjaman extends Model
     {
         return $this->hasMany(DetailPinjam::class, 'id_pinjam', 'id');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_user', 'id');
+    }
 }

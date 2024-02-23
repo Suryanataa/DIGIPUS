@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>dashboard</title>
-
+    <title>{{$title}}</title>
+    <link rel="shortcut icon" href="/images/digipus-logo.png" type="image/x-icon">
     @include('partial.css')
     @yield('style')
 </head>

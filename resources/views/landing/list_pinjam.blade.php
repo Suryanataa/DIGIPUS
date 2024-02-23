@@ -23,29 +23,40 @@
                         <tbody>
                             @foreach ($peminjaman as $item)
                                 <tr class="bg-white border-b ">
-                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
-                                        @dump($item->buku->id)
-                                        {{$item->buku->judul}}
-                                    </th>
                                     <td class="px-6 py-4">
-                                        {{$item->buku->penulis}}
+                                        {{ $item->buku->judul }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        hapus
+                                        {{ $item->buku->penulis }}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <form action="{{ route('list-pinjam.destroy', $item->id) }}" method="POST">
+                                            @method('DELETE')
+                                            @csrf
+                                            <button type="submit">
+                                                hapus
+                                            </button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
                 </div>
-
+                <a href="{{ route('peminjaman.edit', $invoice->invoice) }}" class="">
+                    <div class="w-full py-3 text-center text-white mt-7 px-7 bg-primary rounded-xl hover:bg-secondary">
+                        konfirmasi
+                    </div>
+                </a>
             </div>
-            <form class="flex flex-col w-1/2 gap-2 font-bold text-center bg-white rounded-xl text-primary"
-                style="padding: 25px 100px">
+            <form action="{{ route('list-pinjam.store') }}" method="POST"
+                class="flex flex-col w-1/2 gap-2 font-bold text-center bg-white rounded-xl text-primary"style="padding: 25px 100px">
+                @csrf
                 <h1 class="text-[28px]  ">PILIH BUKU</h1>
                 <p class="text-xl">input judul buku yang akan kamu pinjam</p>
                 <div class="w-full" style="margin-top: 15px">
-                    <select class="w-full rounded-xl border-primary" name="id_kategori">
+                    <input type="text" name="id_pinjam" value="{{ $invoice->id }}" hidden>
+                    <select class="w-full rounded-xl border-primary" name="id_buku">
                         <option selected>Pilih Kategori</option>
                         @foreach ($buku as $item)
                             <option value="{{ $item->id }}">{{ $item->judul }}</option>

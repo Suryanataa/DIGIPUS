@@ -77,12 +77,17 @@
                                     <tr>
                                         <th>Nama Peminjam</th>
                                         <th>Tanggal Pinjam</th>
-                                        <th>Tanggal Kembali</th>
                                         <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-
+                                    @foreach ($peminjaman as $item)
+                                        <tr>
+                                            <td>{{ $item->user->nama }}</td>
+                                            <td>{{ $item->tgl_pinjam }}</td>
+                                            <td>{{ $item->status }}</td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div><!-- /.card-body -->

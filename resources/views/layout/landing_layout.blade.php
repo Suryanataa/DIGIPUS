@@ -13,9 +13,10 @@
 
 <body class="bg-dasar">
     @include('landing.partial.navbar')
+    
     @yield('content')
-    @include('landing.partial.footer')
 
+    @include('landing.partial.footer')
 
     @include('sweetalert::alert')
     @yield('script')

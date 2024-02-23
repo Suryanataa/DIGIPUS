@@ -16,7 +16,7 @@
                 @csrf
                 <button type="submit" class="py-3 text-white rounded-md px-7 bg-primary hover:bg-secondary">buat
                     invoice</button>
-                <a href="#"
+                <a href="{{ route('invoice.index') }}"
                     class="py-3 border-2 rounded-md px-7 w-fit border-primary hover:bg-primary hover:text-white">lihat data
                     pinjam</a>
             </form>

@@ -10,19 +10,16 @@ use Illuminate\Http\Request;
 class ListPinjamController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display the specified resource.
      */
-    public function index(string $id)
+    public function show(string $id)
     {
-        
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        $buku = Buku::where('stok', '!=', 0)->get();
+        $invoice = Peminjaman::where('invoice', $id)->first();
+        $peminjaman = DetailPinjam::with('buku')
+            ->where('id_pinjam', $invoice->id)
+            ->get();
+        return view('landing.list_pinjam', compact('peminjaman', 'buku', 'invoice'));
     }
 
     /**
@@ -30,34 +27,17 @@ class ListPinjamController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $credential = $request->validate([
+            'id_pinjam' => 'required',
+            'id_buku' => 'required',
+        ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        $buku = Buku::where('stok', '!=', 0)->get();
-        $invoice = Peminjaman::where('invoice', $id)->get();
-        // $peminjaman = DetailPinjam::with('buku')->where('id_pinjam', $invoice->id)->get();
-        return view('landing.list_pinjam', compact('peminjaman', 'buku'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
+        $buku = Buku::find($credential['id_buku']);
+        $buku->stok = $buku->stok - 1;
+        $buku->jml_pinjam = $buku->jml_pinjam + 1;
+        $buku->save();
+        DetailPinjam::create($credential);
+        return redirect()->back()->with('success', 'Buku ditambah');
     }
 
     /**
@@ -65,6 +45,12 @@ class ListPinjamController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $detail = DetailPinjam::where('id', $id);
+        $buku = Buku::find($detail->first()->id_buku);
+        $buku->stok = $buku->stok + 1;
+        $buku->jml_pinjam = $buku->jml_pinjam - 1;
+        $buku->save();
+        $detail->delete();
+        return redirect()->back()->with('success', 'Buku dihapus');
     }
 }

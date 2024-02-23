@@ -20,7 +20,7 @@
             <div class="inner">
                 <h3>{{$sumPinjam}}</h3>
 
-                <p>Total Buku Dipinjam</p>
+                <p>Total Buku Sedang Dipinjam</p>
             </div>
             <div class="icon">
                 <i class="ion ion-bag"></i>

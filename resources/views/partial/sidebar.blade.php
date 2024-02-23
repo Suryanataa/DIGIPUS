@@ -34,7 +34,7 @@
 
                 <li class="nav-header">KELOLA BUKU</li>
                 <li class="nav-item">
-                    <a href="pages/widgets.html" class="nav-link ">
+                    <a href="/dashboard/peminjaman" class="nav-link {{ $title == 'Peminjaman | Dashboard' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-table"></i>
                         <p>
                             Peminjaman
