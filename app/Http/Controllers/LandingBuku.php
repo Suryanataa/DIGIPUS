@@ -11,10 +11,15 @@ use Illuminate\Support\Facades\Auth;
 
 class LandingBuku extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $search = $request->search;
+        if ($search) {
+            $buku = Buku::where('judul', 'like', '%' . $search . '%')->paginate(8);
+        } else {
+            $buku = Buku::Paginate(8);
+        }
         $kategori = Kategori::all();
-        $buku = Buku::Paginate(8);
         return view('landing.buku', compact('buku', 'kategori'));
     }
 

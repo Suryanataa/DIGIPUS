@@ -89,7 +89,7 @@ class UserController extends Controller
 
         $credential["slug"] = str()->slug($credential['nama']);
         User::find($id)->update($credential);
-        return redirect("/dashboard/user")->with("success", "User Berhasil!");
+        return redirect("/dashboard/user")->with("success", "User Diedit!");
     }
 
     /**
@@ -98,6 +98,6 @@ class UserController extends Controller
     public function destroy(string $id)
     {
         User::destroy($id);
-        return redirect("/dashboard/user")->with("success", "User Berhasil!");
+        return redirect("/dashboard/user")->with("success", "User dihapus!");
     }
 }

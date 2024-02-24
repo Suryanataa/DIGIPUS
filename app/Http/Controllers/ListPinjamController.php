@@ -18,7 +18,15 @@ class ListPinjamController extends Controller
         $peminjaman = DetailPinjam::with('buku')
             ->where('id_pinjam', $invoice->id)
             ->get();
-        $buku = Buku::where('stok', '!=', 0)->get();
+
+        $bukuDipinjam = $peminjaman->pluck('id_buku')->toArray();
+
+        $buku = Buku::where('stok', '!=', 0)
+            ->whereNotIn('id', $bukuDipinjam)
+            ->whereDoesntHave('detail_pinjam', function ($query) use ($invoice) {
+                $query->where('id_pinjam', $invoice->id);
+            })
+            ->get();
         return view('landing.list_pinjam', compact('peminjaman', 'buku', 'invoice'));
     }
 

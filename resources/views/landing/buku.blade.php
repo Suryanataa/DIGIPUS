@@ -17,7 +17,7 @@
         </div>
         <div class="flex justify-between gap-10">
             <div class="flex flex-col w-1/4 gap-5">
-                <form class="flex items-center">
+                <form method="GET" action="/buku" class="flex items-center">
                     <input type="search" name="search" placeholder="Cari buku"
                         class="w-3/4 px-3 py-2 border-2 rounded-l-xl text-primary border-primary">
 
@@ -29,7 +29,7 @@
                     <h3 class="font-bold">FILTER KATEGORI</h3>
 
                     <ul class="flex flex-col gap-1 px-6 mt-1 font-semibold">
-                        <li><a href="/buku">semua buku</a></li>
+                        <li><a href="/buku">Semua buku</a></li>
 
                         @foreach ($kategori as $item)
                             <li><a href="{{ route('buku.kategori', $item->id) }}">{{ $item->kategori}}</a></li>
@@ -50,6 +50,7 @@
                         </a>
                     @endforeach
                 </div>
+                {{ $buku->links() }}
             </div>
         </div>
     </div>

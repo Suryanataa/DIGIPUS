@@ -1,7 +1,7 @@
 @extends('layout.landing_layout')
 
 @section('content')
-    <div class="flex items-center justify-center mt-12">
+    <div class="flex items-center justify-center mt-28">
         <div class="flex flex-col items-center w-2/5 gap-5 px-10 font-semibold bg-white py-7 text-primary rounded-xl">
             <h1 class="text-[28px] font-bold">BUAT PEMINJAMAN</h1>
 

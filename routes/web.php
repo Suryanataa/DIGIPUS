@@ -35,7 +35,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
 Route::get('/buku', [LandingBuku::class, 'index'])->name('buku.index');
-
 Route::get('/buku/{kategori}', [LandingBuku::class, 'kategori'])->name('buku.kategori');
 
 Route::get('/buku/detail/{slug}', [LandingBuku::class, 'detail'])->name('buku.detail')->middleware('auth');

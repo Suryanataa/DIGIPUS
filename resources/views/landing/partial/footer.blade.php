@@ -1,4 +1,4 @@
-<footer class="bg-secondary px-[100px] flex justify-between items-center text-white mt-16 text-[24px]">
+<footer class="bg-secondary px-[100px] flex justify-between items-center text-white mt-[150px] text-[24px]">
     <img src="/images/digipus-logo.png" alt="logo footer" width="18%">
 
     <p class="font-bold">#TingkatkanLiterasiMu</p>

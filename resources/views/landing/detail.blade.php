@@ -6,7 +6,7 @@
     <div class="flex px-[100px] gap-12 mt-10">
         <div class="flex flex-col items-end w-2/5">
             <span>
-                <img src="/gambar/{{ $buku->gambar }}" alt="sampul buku" class="object-contain">
+                <img src="/gambar/{{ $buku->gambar }}" alt="sampul buku" class="object-contain max-h-[300px]">
                 @auth
                     @if ($isKoleksi == false && auth()->user()->role == 'peminjam')
                         <form class="mt-6" method="post" action="{{ route('koleksi.store') }}">
@@ -25,7 +25,9 @@
             <p>PENULIS: {{ $buku->penulis }}</p>
             <p>PENERBIT: {{ $buku->penerbit }}</p>
             <p>TAHUN TERBIT: {{ $buku->thn_terbit }}</p>
-            <p class="flex gap-4">RATING: <span class="flex gap-2">@include('landing.partial.star') {{$avgRating}} </span></p>
+            <p class="flex gap-4">RATING: <span class="flex gap-2">@include('landing.partial.star')
+                    {{ $ulasan->count() == 0 ? '0' : $avgRating }} </span>
+            </p>
             <p>
                 {{ $buku->deskripsi }}
             </p>
@@ -62,23 +64,27 @@
     </div>
 
     @auth
+        @if ($ulasan->count() == 0)
+            <div></div>
+        @else
+            <div class="px-[100px] mt-20">
+                <h2 class="font-bold text-center text-primary text-[28px] mb-10">ULASAN BUKU</h2>
 
-        <div class="px-[100px] mt-20">
-            <h2 class="font-bold text-center text-primary text-[28px] mb-10">ULASAN BUKU</h2>
-
-            <div class="grid grid-cols-3 gap-6">
-                @foreach ($ulasan as $item)
-                    <div class="flex flex-col font-semibold bg-white text-primary text-[20px] py-5 px-10 gap-2 rounded-xl">
-                        <span>Nama: {{$item->user->nama}}</span>
-                        <span class="flex gap-2">Rating: <span class="flex gap-1">@include('landing.partial.star') {{$item->rate}}</span></span>
-                        <div class="flex flex-col gap-2">
-                            <span>Ulasan:</span>
-                            <textarea name="ulasan" readonly cols="30" disabled
-                                class="w-full mx-auto rounded-lg border-primary text-primary bg-dasar">{{$item->ulasan}}</textarea>
+                <div class="grid grid-cols-3 gap-6">
+                    @foreach ($ulasan as $item)
+                        <div class="flex flex-col font-semibold bg-white text-primary text-[20px] py-5 px-10 gap-2 rounded-xl">
+                            <span>Nama: {{ $item->user->nama }}</span>
+                            <span class="flex gap-2">Rating: <span class="flex gap-1">@include('landing.partial.star')
+                                    {{ $item->rate }}</span></span>
+                            <div class="flex flex-col gap-2">
+                                <span>Ulasan:</span>
+                                <textarea name="ulasan" readonly cols="30" disabled
+                                    class="w-full mx-auto rounded-lg border-primary text-primary bg-dasar">{{ $item->ulasan }}</textarea>
+                            </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                </div>
             </div>
-        </div>
+        @endif
     @endauth
 @endsection
