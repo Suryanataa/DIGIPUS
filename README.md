@@ -1,4 +1,4 @@
-# Assets ukk
+# DIGIPUS
 
 ## Instalasi
 Clone Repo ini
