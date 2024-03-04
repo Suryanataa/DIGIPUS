@@ -1,6 +1,6 @@
 # DIGIPUS
 
-!["Home Page"]("/DIGIPUS HOME.png")
+![Home Page Digipus](/public/DIGIPUS-HOME.png)
 
 ## Instalasi
 
