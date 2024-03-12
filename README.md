@@ -32,7 +32,7 @@ Salin file .env.example
 Buat database dan hubungkan di file .env
 
 ```bash
-  DB_DATABASE=db_31_ukk
+  DB_DATABASE=digipus
 ```
 
 Jalankan migrasi
